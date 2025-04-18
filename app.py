@@ -59,5 +59,6 @@ def get_recommendations(movie_title: str):
 # 👇 ADD THIS TO RUN LOCALLY AND ON RENDER
 if __name__ == "__main__":
     import os
-    port = int(os.environ.get("PORT", 8000))  # Render sets the PORT variable
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False)
