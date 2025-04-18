@@ -3,13 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 import pickle
 import pandas as pd
 import requests
+import uvicorn  # <-- Required for running
 
 app = FastAPI()
 
 # Allow frontend to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # use specific origin like "http://localhost:3000" in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -53,3 +54,10 @@ def get_movies():
 def get_recommendations(movie_title: str):
     names, posters = recommend(movie_title)
     return {"titles": names, "posters": posters}
+
+
+# 👇 ADD THIS TO RUN LOCALLY AND ON RENDER
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 8000))  # Render sets the PORT variable
+    uvicorn.run(app, host="0.0.0.0", port=port)
