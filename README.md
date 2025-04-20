@@ -66,7 +66,7 @@ uvicorn app:app --reload
 
 ### Step 3: Frontend Setup (React)
 ```bash
-cd ../cancer-predictor  # Your frontend folder (reuse or rename accordingly)
+cd ../frontend  # Your frontend folder (reuse or rename accordingly)
 npm install
 npm run dev
 ```
